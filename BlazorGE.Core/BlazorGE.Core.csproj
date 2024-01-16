@@ -1,23 +1,34 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>BlazorGE.Core</Title>
+		<Description>BlazorGE (Game Engine) is a lightweight Blazor game engine/framework created by Aventius and other contributors (see Git repo), this package contains the core components</Description>
+		<PackageProjectUrl>https://github.com/aventius-software/BlazorGE</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/aventius-software/BlazorGE</RepositoryUrl>
+		<PackageTags>Blazor,aspnetcore,game-development,game-engine,game-framework,game,development,engine,framework,canvas</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Version>1.0.1</Version>
+		<Company>Aventius,others</Company>
+		<Authors>Aventius,others</Authors>
+	</PropertyGroup>
 
-  
-  <ItemGroup>
-    <SupportedPlatform Include="browser" />
-  </ItemGroup>
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.7" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.4" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Blazorge.Game\BlazorGE.Game.csproj" />
-    <ProjectReference Include="..\BlazorGE.Graphics2D\BlazorGE.Graphics2D.csproj" />
-    <ProjectReference Include="..\Blazorge.Graphics\BlazorGE.Graphics.csproj" />
-    <ProjectReference Include="..\Blazorge.Input\BlazorGE.Input.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\BlazorGE.Game\BlazorGE.Game.csproj" />
+		<ProjectReference Include="..\BlazorGE.Graphics2D\BlazorGE.Graphics2D.csproj" />
+		<ProjectReference Include="..\BlazorGE.Graphics\BlazorGE.Graphics.csproj" />
+		<ProjectReference Include="..\BlazorGE.Input\BlazorGE.Input.csproj" />
+	</ItemGroup>
 
 </Project>

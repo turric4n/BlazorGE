@@ -2,10 +2,6 @@
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using BlazorGE.Graphics2D.Sprites;
 
 #endregion
 
@@ -39,7 +35,7 @@ namespace BlazorGE.Graphics2D.Services
         public int CanvasHeight { get; protected set; }
         public int CanvasWidth { get; protected set; }
 
-        public event EventHandler<ElementReference> Initialized;
+        public event EventHandler<ElementReference> OnInitialised;
 
         #endregion
 
@@ -70,7 +66,7 @@ namespace BlazorGE.Graphics2D.Services
 
         #endregion
 
-        #region JSInvokable Methods
+        #region JSInvokable Public Methods
 
         /// <summary>
         /// Called by JS when the canvas resize event occurs
@@ -127,12 +123,16 @@ namespace BlazorGE.Graphics2D.Services
             if (IsBatching)
             {
                 IsBatching = false;
-                var items = BatchItems.ToArray();
 
                 try
                 {
                     // Try to use unmarshalled functions, much faster
+                    var items = BatchItems.ToArray();
+
+                    // Need to implement new JSImport method sometime as the below method is now obsolete in .NET 7!
+#pragma warning disable 0618
                     JSUnmarshalledRuntime.InvokeUnmarshalled<object[][], int>("window.blazorGEFunctions.drawBatch", items);
+#pragma warning restore 0618                    
                 }
                 catch
                 {
@@ -278,14 +278,12 @@ namespace BlazorGE.Graphics2D.Services
         /// Initialise the canvas for 2D operations
         /// </summary>
         /// <returns></returns>
-        public async ValueTask InitialiseCanvas(ElementReference canvasReference)
+        public async ValueTask InitialiseCanvasAsync(ElementReference canvasReference)
         {
             var module = await ModuleTask.Value;
             var canvasObject = await module.InvokeAsync<string>("initialiseCanvas2D", DotNetObjectReference.Create(this), canvasReference);
-            
-            Initialized?.Invoke(this, canvasReference);
-            
-            await Task.CompletedTask;
+
+            OnInitialised?.Invoke(this, canvasReference);
         }
 
         #endregion
