@@ -1,5 +1,9 @@
 ﻿#region Namespaces
 
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using BlazorGE.Graphics2D.Sprites;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 

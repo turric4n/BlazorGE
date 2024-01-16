@@ -1,5 +1,6 @@
 ﻿#region Namespaces
 
+using System.Threading.Tasks;
 using BlazorGE.Graphics2D.Services;
 using Microsoft.AspNetCore.Components;
 
