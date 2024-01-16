@@ -3,6 +3,7 @@
 using BlazorGE.Graphics2D;
 using BlazorGE.Graphics2D.Services;
 using System.Threading.Tasks;
+using BlazorGE.Graphics2D.Sprites;
 
 #endregion
 

@@ -4,6 +4,7 @@ using BlazorGE.Graphics.Services;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Threading.Tasks;
+using BlazorGE.Graphics2D.Sprites;
 
 #endregion
 

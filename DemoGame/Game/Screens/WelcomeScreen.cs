@@ -13,6 +13,8 @@ namespace DemoGame.Game.Screens
 {
     public class WelcomeScreen : GameScreenBase
     {
+        public IMouseService MouseService { get; }
+
         #region Protected Properties
 
         protected IGameScreenService GameScreenManager;
@@ -24,8 +26,13 @@ namespace DemoGame.Game.Screens
 
         #region Constructors
 
-        public WelcomeScreen(GameWorld gameWorld, IGraphicsService2D graphicsService, IKeyboardService keyboardService, IGameScreenService gameScreenManager, IGraphicAssetService graphicAssetService) : base(gameWorld)
+        public WelcomeScreen(GameWorld gameWorld, IGraphicsService2D graphicsService, 
+            IKeyboardService keyboardService, 
+            IMouseService mouseService,
+            IGameScreenService gameScreenManager, 
+            IGraphicAssetService graphicAssetService) : base(gameWorld)
         {
+            MouseService = mouseService;
             GraphicsService = graphicsService;
             KeyboardService = keyboardService;
             GameScreenManager = gameScreenManager;
@@ -49,7 +56,7 @@ namespace DemoGame.Game.Screens
 
             if (kstate.IsKeyDown(Keys.Space))
             {
-                await GameScreenManager.LoadScreenAsync(new GamePlayScreen(GameWorld, GraphicsService, GraphicAssetService, KeyboardService));
+                await GameScreenManager.LoadScreenAsync(new GamePlayScreen(GameWorld, GraphicsService, GraphicAssetService, KeyboardService, MouseService));
             }
 
             await base.UpdateAsync(gameTime);

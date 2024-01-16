@@ -46,7 +46,7 @@ namespace BlazorGE.Graphics.Components
         protected async Task OnLoadGraphicAsset(Guid uniqueIdentifier)
         {
             // Try and find this sprite sheet
-            var assets = Assets.Where(asset => asset.UniqueIdentifier == uniqueIdentifier);
+            var assets = Assets.Where(asset => asset.UniqueIdentifier == uniqueIdentifier).ToList();
 
             // Does it exist? 
             if (assets.Any())

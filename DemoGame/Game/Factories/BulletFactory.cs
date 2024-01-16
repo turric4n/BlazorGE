@@ -9,6 +9,7 @@ using BlazorGE.Graphics2D;
 using BlazorGE.Graphics2D.Services;
 using DemoGame.Game.Components;
 using System.Numerics;
+using BlazorGE.Graphics2D.Sprites;
 
 #endregion
 

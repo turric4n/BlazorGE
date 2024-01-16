@@ -11,10 +11,15 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.7" />
+    <PackageReference Include="TiledSharp" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BlazorGE.Graphics\BlazorGE.Graphics.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Tilemap\" />
   </ItemGroup>
 
 </Project>

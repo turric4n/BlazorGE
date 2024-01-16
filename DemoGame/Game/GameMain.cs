@@ -14,6 +14,8 @@ namespace DemoGame.Game
 {
     public class GameMain : GameBase
     {
+        public IMouseService MouseService { get; }
+
         #region Protected Properties
 
         protected IGameScreenService GameScreenManager;
@@ -26,8 +28,11 @@ namespace DemoGame.Game
 
         #region Constructors
 
-        public GameMain(GameWorld gameWorld, IGameScreenService gameScreenManager, IGraphicsService2D graphicsService, IGraphicAssetService graphicAssetService, IKeyboardService keyboardService)
+        public GameMain(GameWorld gameWorld, IGameScreenService gameScreenManager, 
+            IGraphicsService2D graphicsService, IGraphicAssetService graphicAssetService, 
+            IKeyboardService keyboardService, IMouseService mouseService)
         {
+            MouseService = mouseService;
             GameWorld = gameWorld;
             GameScreenManager = gameScreenManager;
             GraphicsService = graphicsService;
@@ -66,7 +71,7 @@ namespace DemoGame.Game
         public override async Task LoadContentAsync()
         {
             // Create our screen and load it                      
-            await GameScreenManager.LoadScreenAsync(new WelcomeScreen(GameWorld, GraphicsService, KeyboardService, GameScreenManager, GraphicAssetService));
+            await GameScreenManager.LoadScreenAsync(new WelcomeScreen(GameWorld, GraphicsService, KeyboardService, MouseService, GameScreenManager, GraphicAssetService));
 
             await base.LoadContentAsync();
         }

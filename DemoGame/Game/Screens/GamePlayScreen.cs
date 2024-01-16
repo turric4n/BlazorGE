@@ -15,6 +15,8 @@ namespace DemoGame.Game.Screens
 {
     public class GamePlayScreen : GameScreenBase
     {
+        public IMouseService MouseService { get; }
+
         #region Protected Properties
 
         protected IGraphicAssetService GraphicAssetService;
@@ -25,8 +27,12 @@ namespace DemoGame.Game.Screens
 
         #region Constructors
 
-        public GamePlayScreen(GameWorld gameWorld, IGraphicsService2D graphicsService2D, IGraphicAssetService graphicAssetService, IKeyboardService keyboardService) : base(gameWorld)
+        public GamePlayScreen(GameWorld gameWorld, IGraphicsService2D graphicsService2D, 
+            IGraphicAssetService graphicAssetService, 
+            IKeyboardService keyboardService,
+            IMouseService mouseService) : base(gameWorld)
         {
+            MouseService = mouseService;
             GraphicsService2D = graphicsService2D;
             GraphicAssetService = graphicAssetService;
             KeyboardService = keyboardService;
@@ -47,7 +53,7 @@ namespace DemoGame.Game.Screens
             bulletFactory.LoadContent();
 
             // Create a factory to make the player(s)
-            var playerFactory = new PlayerFactory(GameWorld, GraphicAssetService, GraphicsService2D, KeyboardService, bulletFactory);
+            var playerFactory = new PlayerFactory(GameWorld, GraphicAssetService, GraphicsService2D, KeyboardService, MouseService, bulletFactory);
             playerFactory.LoadContent();
             playerFactory.CreatePlayer(0, 0);
 

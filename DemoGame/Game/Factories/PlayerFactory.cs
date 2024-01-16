@@ -7,6 +7,7 @@ using BlazorGE.Graphics.Assets;
 using BlazorGE.Graphics.Services;
 using BlazorGE.Graphics2D;
 using BlazorGE.Graphics2D.Services;
+using BlazorGE.Graphics2D.Sprites;
 using BlazorGE.Input;
 using DemoGame.Game.Components;
 
@@ -16,6 +17,8 @@ namespace DemoGame.Game.Factories
 {
     public class PlayerFactory
     {
+        public IMouseService MouseService { get; }
+
         #region Protected Constants
 
         protected const int Height = 48;
@@ -36,13 +39,19 @@ namespace DemoGame.Game.Factories
 
         #region Constructors
 
-        public PlayerFactory(GameWorld gameWorld, IGraphicAssetService graphicAssetService, IGraphicsService2D graphicsService2D, IKeyboardService keyboardService, BulletFactory bulletFactory)
+        public PlayerFactory(GameWorld gameWorld, IGraphicAssetService graphicAssetService, 
+            IGraphicsService2D graphicsService2D, 
+            IKeyboardService keyboardService, 
+            IMouseService mouseService, 
+            BulletFactory bulletFactory)
         {
+            MouseService = mouseService;
             GameWorld = gameWorld;
             GraphicAssetService = graphicAssetService;
             GraphicsService2D = graphicsService2D;
             KeyboardService = keyboardService;
             BulletFactory = bulletFactory;
+
         }
 
         #endregion
@@ -58,7 +67,7 @@ namespace DemoGame.Game.Factories
         public GameEntity CreatePlayer(int startX, int startY)
         {
             var player = GameWorld.CreateGameEntity();
-            player.AttachGameComponent(new PlayerMovementComponent(KeyboardService, GraphicsService2D));
+            player.AttachGameComponent(new PlayerMovementComponent(KeyboardService, GraphicsService2D, MouseService));
             player.AttachGameComponent(new Transform2DComponent { Width = Width, Height = Height });
             player.AttachGameComponent(new SpriteComponent(new Sprite(GraphicAsset, 0, 0, Width, Height, Width, Height, startX, startY), GraphicsService2D));
             player.AttachGameComponent(new PlayerFireControlComponent(KeyboardService, BulletFactory));

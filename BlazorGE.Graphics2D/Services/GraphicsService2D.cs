@@ -5,6 +5,7 @@ using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BlazorGE.Graphics2D.Sprites;
 
 #endregion
 

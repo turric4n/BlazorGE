@@ -24,7 +24,7 @@ namespace BlazorGE.Graphics.Services
         /// <returns></returns>
         public GraphicAsset CreateGraphicAsset(string url)
         {
-            return OnCreateGraphicAssetHandlers.Invoke(url);
+            return OnCreateGraphicAssetHandlers?.Invoke(url);
         }
 
         /// <summary>

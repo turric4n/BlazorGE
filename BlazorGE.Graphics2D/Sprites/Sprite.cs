@@ -4,7 +4,7 @@ using BlazorGE.Graphics.Assets;
 
 #endregion
 
-namespace BlazorGE.Graphics2D
+namespace BlazorGE.Graphics2D.Sprites
 {
     public struct Sprite
     {
